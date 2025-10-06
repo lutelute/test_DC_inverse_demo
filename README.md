@@ -12,12 +12,16 @@
 ## 📁 ファイル構成
 
 ```
-├── dc_flow_inverse_demo.m           # 基本デモ（単一ケース）
-├── dc_flow_inverse_batch.m          # バッチ処理・統計分析
-├── run_analysis.m                   # 統合分析・可視化
+├── dc_inverse_three_steps.m         # 明確な3ステップデモ（推奨）
+├── mathematical_verification.m     # 数学的性質の検証
+├── visualize_inverse_process.m     # 可視化デモ
+├── Mathematical_Theory.md          # 数学的理論ドキュメント
+├── dc_flow_inverse_demo.m          # 基本デモ（単一ケース）
+├── dc_flow_inverse_batch.m         # バッチ処理・統計分析
+├── run_analysis.m                  # 統合分析・可視化
 ├── DC_Flow_Inverse_Problem_Notes.md # 技術ドキュメント
-├── dc_batch_log_case9_*.csv         # バッチ実行結果ログ
-└── README.md                        # このファイル
+├── dc_batch_log_case9_*.csv        # バッチ実行結果ログ
+└── README.md                       # このファイル
 ```
 
 ## 🚀 クイックスタート
@@ -28,15 +32,20 @@
 
 ### 基本実行
 ```matlab
-% 1. 基本デモ実行
+% 1. 明確な3ステップデモ（推奨）
+dc_inverse_three_steps();
+
+% 2. 数学的検証
+mathematical_verification();
+
+% 3. 可視化デモ
+visualize_inverse_process();
+
+% 4. 従来の基本デモ
 dc_flow_inverse_demo();
 
-% 2. ノイズ分析含む完全な分析
+% 5. ノイズ分析含む完全な分析
 run_analysis();
-
-% 3. カスタムバッチ分析
-opts = struct('noise_sigma', 0.01);  % 1%ノイズ
-dc_flow_inverse_batch('case9', 100, opts);
 ```
 
 ## 📊 実行結果例
@@ -104,7 +113,8 @@ dc_flow_inverse_batch('case14', 200, opts);
 
 ## 📖 詳細ドキュメント
 
-技術的な詳細は [DC_Flow_Inverse_Problem_Notes.md](DC_Flow_Inverse_Problem_Notes.md) を参照してください。
+- **数学的理論**: [Mathematical_Theory.md](Mathematical_Theory.md) - 厳密な数式と理論的解析
+- **実装詳細**: [DC_Flow_Inverse_Problem_Notes.md](DC_Flow_Inverse_Problem_Notes.md) - 技術的実装と応用
 
 ## 🤝 貢献
 
