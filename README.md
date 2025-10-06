@@ -42,6 +42,12 @@
 - MATLAB R2018b以降
 - [MATPOWER](https://matpower.org/) toolbox
 
+### ファイル整理
+```matlab
+% ファイルクリーンアップ（最初に実行推奨）
+cleanup_manager();
+```
+
 ### 基本実行
 ```matlab
 % 1. 明確な3ステップデモ（推奨）

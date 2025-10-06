@@ -1,0 +1,52 @@
+# MATLAB specific files
+*.m~
+*.asv
+
+# Temporary files
+*.tmp
+*~
+
+# Results and data files (keep structure but ignore generated content)
+results/individual/*.mat
+results/individual/*.csv
+results/comparative/*.mat
+results/comparative/*.csv
+results/csv_data/noise_*.csv
+results/csv_data/dc_batch_*.csv
+results/plots/*.png
+results/plots/*.jpg
+results/plots/*.fig
+results/reports/*.txt
+
+# Test case results (keep structure but ignore generated content)
+test_cases/case9/result_*.mat
+test_cases/case14/result_*.mat
+test_cases/case30/result_*.mat
+test_cases/case57/result_*.mat
+test_cases/case118/result_*.mat
+test_cases/case300/result_*.mat
+
+# Archive folder contents
+archive/old_results/*
+archive/temp_files/*
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Backup files
+*.bak
+*.backup
+
+# Log files
+*.log
+
+# Keep important summary files
+!results/csv_data/README.md
+!results/plots/README.md
+!results/reports/README.md
+!test_cases/*/README.md
