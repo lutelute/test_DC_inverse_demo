@@ -101,7 +101,7 @@ function dc_flow_inverse_batch(case_name_or_mpc, N, opts)
             % DC の順問題：theta_true, f_true
             theta_true = zeros(nbus,1);
             % 可解性（島化）等で警戒：Bbus(keep,keep)が正則かチェック
-            if rcond(Bbus(keep,keep)) < 1e-12
+            if rcond(full(Bbus(keep,keep))) < 1e-12
                 error('Bbus(keep,keep) is ill-conditioned (scenario=%d)', s);
             end
             theta_true(keep) = Bbus(keep,keep) \ P_true(keep);

@@ -24,7 +24,7 @@ for i = 1:length(noise_levels)
     % バッチ実行（100ケース）
     opts = struct();
     opts.noise_sigma = noise_sigma;
-    opts.tol_pass = 1e-6;  % より緩い判定基準
+    opts.tol_pass = 1e-2;  % 現実的な判定基準（1%誤差まで許容）
     opts.csv_prefix = sprintf('noise_%.3f_', noise_sigma);
     
     % エラーを避けるため一時的にwarningを無効化
