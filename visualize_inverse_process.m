@@ -211,7 +211,7 @@ colormap(gca, 'hot');
 
 % 数値情報を追加
 dim_text = sprintf('サイズ: %dx%d\nrank: %d\ncond: %.2e', ...
-    size(Bf(:,keep)), rank(Bf(:,keep)), cond(Bf(:,keep)));
+    size(Bf(:,keep)), rank(full(Bf(:,keep))), cond(full(Bf(:,keep))));
 text(0.02, 0.98, dim_text, 'Units', 'normalized', 'VerticalAlignment', 'top', ...
      'BackgroundColor', 'white', 'FontSize', 8);
 
@@ -292,7 +292,7 @@ legend('平均', '±1σ', 'Location', 'best');
 
 % 条件数の影響
 subplot(2, 2, 3);
-cond_num = cond(Bf(:, keep));
+cond_num = cond(full(Bf(:, keep)));
 theoretical_amplification = cond_num * noise_levels;
 loglog(noise_levels, theoretical_amplification, 'k--', 'LineWidth', 2, 'DisplayName', '理論値');
 hold on;

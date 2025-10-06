@@ -149,8 +149,8 @@ end
 fprintf('\n数学的整合性:\n');
 fprintf('- Bbus は %dx%d 行列\n', size(Bbus));
 fprintf('- Bf は %dx%d 行列 (過剰決定: %d > %d)\n', size(Bf), nbr, nbus-1);
-fprintf('- rank(Bf(:,keep)) = %d\n', rank(Bf(:,keep)));
-fprintf('- cond(Bf(:,keep)) = %.3e\n', cond(Bf(:,keep)));
+fprintf('- rank(Bf(:,keep)) = %d\n', rank(full(Bf(:,keep))));
+fprintf('- cond(Bf(:,keep)) = %.3e\n', cond(full(Bf(:,keep))));
 
 fprintf('\n=== 3ステップ完了 ===\n');
 end

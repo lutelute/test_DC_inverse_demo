@@ -35,9 +35,9 @@ fprintf('\nBbus行列の性質:\n');
 fprintf('- サイズ: %dx%d\n', size(Bbus));
 fprintf('- 対称性: %s\n', check_symmetry(Bbus));
 fprintf('- 正定値性: %s\n', check_positive_definite(Bbus));
-fprintf('- rank(Bbus) = %d\n', rank(Bbus));
-fprintf('- rank(Bbus(keep,keep)) = %d\n', rank(Bbus(keep,keep)));
-fprintf('- cond(Bbus(keep,keep)) = %.3e\n', cond(Bbus(keep,keep)));
+fprintf('- rank(Bbus) = %d\n', rank(full(Bbus)));
+fprintf('- rank(Bbus(keep,keep)) = %d\n', rank(full(Bbus(keep,keep))));
+fprintf('- cond(Bbus(keep,keep)) = %.3e\n', cond(full(Bbus(keep,keep))));
 
 % 固有値解析
 eigenvals_Bbus = eig(Bbus);
@@ -48,9 +48,9 @@ fprintf('- 最小固有値(Bbus(keep,keep)): %.3e\n', min(eigenvals_reduced));
 % Bf行列の性質  
 fprintf('\nBf行列の性質:\n');
 fprintf('- サイズ: %dx%d\n', size(Bf));
-fprintf('- rank(Bf) = %d\n', rank(Bf));
-fprintf('- rank(Bf(:,keep)) = %d\n', rank(Bf(:,keep)));
-fprintf('- cond(Bf(:,keep)) = %.3e\n', cond(Bf(:,keep)));
+fprintf('- rank(Bf) = %d\n', rank(full(Bf)));
+fprintf('- rank(Bf(:,keep)) = %d\n', rank(full(Bf(:,keep))));
+fprintf('- cond(Bf(:,keep)) = %.3e\n', cond(full(Bf(:,keep))));
 
 % 過剰決定性の確認
 fprintf('- 過剰決定度: m - (n-1) = %d - %d = %d\n', nbr, length(keep), nbr - length(keep));
@@ -75,16 +75,16 @@ b_ls = f_test;
 
 fprintf('- 係数行列 A のサイズ: %dx%d\n', size(A_ls));
 fprintf('- 右辺ベクトル b のサイズ: %dx1\n', length(b_ls));
-fprintf('- rank(A) = %d\n', rank(A_ls));
-fprintf('- null space dimension = %d\n', size(A_ls, 2) - rank(A_ls));
+fprintf('- rank(A) = %d\n', rank(full(A_ls)));
+fprintf('- null space dimension = %d\n', size(A_ls, 2) - rank(full(A_ls)));
 
 % 正規方程式での解法
 fprintf('\n正規方程式による解析:\n');
 AtA = A_ls' * A_ls;
 Atb = A_ls' * b_ls;
 fprintf('- A^T A のサイズ: %dx%d\n', size(AtA));
-fprintf('- rank(A^T A) = %d\n', rank(AtA));
-fprintf('- cond(A^T A) = %.3e\n', cond(AtA));
+fprintf('- rank(A^T A) = %d\n', rank(full(AtA)));
+fprintf('- cond(A^T A) = %.3e\n', cond(full(AtA)));
 
 % 解の計算（複数手法）
 theta_ls1 = A_ls \ b_ls;  % MATLAB標準
@@ -136,7 +136,7 @@ for i = 1:length(noise_levels)
     delta_P = norm(P_noisy - P_test);
     
     % 条件数による理論的悪化度
-    theoretical_amplification = cond(A_ls) * noise / norm(f_test);
+    theoretical_amplification = cond(full(A_ls)) * noise / norm(f_test);
     
     fprintf('%.0e      %.3e    %.3e    %.3e\n', noise, delta_theta, delta_P, theoretical_amplification);
 end

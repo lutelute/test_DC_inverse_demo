@@ -207,8 +207,8 @@ basic_result.error_theta = rel_error(theta_hat, theta_true);
 basic_result.error_P = rel_error(P_hat, P_true);
 basic_result.error_f = rel_error(f_hat, f_true);
 basic_result.residual_norm = norm(Bf * theta_hat - f_true);
-basic_result.matrix_condition = cond(Bf(:, keep));
-basic_result.matrix_rank = rank(Bf(:, keep));
+basic_result.matrix_condition = cond(full(Bf(:, keep)));
+basic_result.matrix_rank = rank(full(Bf(:, keep)));
 basic_result.power_balance = abs(sum(P_true));
 end
 
@@ -289,12 +289,12 @@ function stability_result = run_numerical_stability_test(mpc, Bbus, Bf, ref, kee
 
 % 行列の数値的性質
 A_ls = Bf(:, keep);
-cond_number = cond(A_ls);
-rank_A = rank(A_ls);
+cond_number = cond(full(A_ls));
+rank_A = rank(full(A_ls));
 [m, n] = size(A_ls);
 
 % 特異値分解
-[U, S, V] = svd(A_ls);
+[U, S, V] = svd(full(A_ls));
 singular_values = diag(S);
 min_sv = min(singular_values);
 max_sv = max(singular_values);
@@ -310,7 +310,7 @@ stability_result.singular_values = singular_values;
 stability_result.min_singular_value = min_sv;
 stability_result.max_singular_value = max_sv;
 stability_result.pinv_condition = pinv_cond;
-stability_result.numerical_rank = rank(A_ls, 1e-12);
+stability_result.numerical_rank = rank(full(A_ls), 1e-12);
 end
 
 function mode_desc = get_mode_description(opts)
